@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: black;
+      color: red;
+      font-family: 'Digital-7 Mono', sans-serif;
+      font-size: 5rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="timer">02:37:15</div>
+
+  <script>
+    // Set initial time in seconds (2 hours, 37 minutes, 15 seconds)
+    let totalSeconds = (2 * 3600) + (37 * 60) + 15;
+
+    // Function to format time as HH:MM:SS
+    function formatTime(seconds) {
+      const hours = String(Math.floor(seconds / 3600)).padStart(2, '0');
+      const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+      const secs = String(seconds % 60).padStart(2, '0');
+      return `${hours}:${minutes}:${secs}`;
+    }
+
+    // Function to update the timer every second
+    function updateTimer() {
+      if (totalSeconds >= 0) {
+        document.getElementById('timer').textContent = formatTime(totalSeconds);
+        totalSeconds--;
+      } else {
+        document.getElementById('timer').textContent = "00:00:00";
+        clearInterval(countdown);
+      }
+    }
+
+    // Start the countdown
+    const countdown = setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
