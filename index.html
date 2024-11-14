@@ -35,8 +35,9 @@
   <div id="timer">02:37:15</div>
 
   <script>
-    // Set initial time in seconds (2 hours, 37 minutes, 15 seconds)
-    let totalSeconds = (2 * 3600) + (37 * 60) + 15;
+     // Set initial time in seconds (2 hours, 37 minutes, 15 seconds)
+     let totalSeconds = (2 * 3600) + (37 * 60) + 15;
+    let countdown; // Variable to store the interval
 
     // Function to format time as HH:MM:SS
     function formatTime(seconds) {
@@ -57,8 +58,18 @@
       }
     }
 
-    // Start the countdown
-    const countdown = setInterval(updateTimer, 1000);
+    // Function to start the countdown on click or tap
+    function startCountdown() {
+      // Clear any previous interval
+      clearInterval(countdown);
+      // Reset totalSeconds to the initial value
+      totalSeconds = (2 * 3600) + (37 * 60) + 15;
+      // Start the countdown
+      countdown = setInterval(updateTimer, 1000);
+    }
+
+    // Add click or tap event listener to start the countdown
+    document.getElementById('timer').addEventListener('click', startCountdown);
   </script>
 </body>
 </html>
